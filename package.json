@@ -1,0 +1,14 @@
+{
+  "name": "sls-meetup-alexa-skill",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "ask-sdk-core": "^2.9.0",
+    "ask-sdk-model": "^1.29.0",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "serverless-alexa-skills": "^0.1.0"
+  }
+}
