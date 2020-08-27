@@ -3,7 +3,7 @@
 const Alexa = require('ask-sdk-core')
 const fetch = require('node-fetch')
 
-const API_KEY = 'b31a706851e5253ed1b1af5e9a6222d5'
+const { API_KEY } = process.env
 let cityName = 'Kathmandu'
 const SKILL_NAME = 'Check Weather'
 let WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
