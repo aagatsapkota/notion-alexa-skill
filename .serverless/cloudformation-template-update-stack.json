@@ -146,7 +146,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-meetup-alexa-skill/dev/1598537767813-2020-08-27T14:16:07.813Z/sls-meetup-alexa-skill.zip"
+          "S3Key": "serverless/sls-meetup-alexa-skill/dev/1598885801253-2020-08-31T14:56:41.253Z/sls-meetup-alexa-skill.zip"
         },
         "FunctionName": "sls-meetup-alexa-skill-dev-meetupHandler",
         "Handler": "index.meetupHandler",
@@ -164,14 +164,14 @@
         "MeetupHandlerLogGroup"
       ]
     },
-    "MeetupHandlerLambdaVersion2eGTPK1cRItfCPraYVKy1wRpAVdWgZ4VW5KIjB8Yoo": {
+    "MeetupHandlerLambdaVersiondwnNtfftEeW72fpZu9PRqH9d5oE7RAwFJxSOX83sY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MeetupHandlerLambdaFunction"
         },
-        "CodeSha256": "705txZHwXIwTFLr+P+zrpGc612R3A1G+F5ShzXPd2Vc="
+        "CodeSha256": "4rGIPtxXN/0mEY9/2LPbskKNXHiHo31wwTtvI8i3Kis="
       }
     },
     "MeetupHandlerLambdaPermissionAlexaSkill1": {
@@ -198,7 +198,7 @@
     "MeetupHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MeetupHandlerLambdaVersion2eGTPK1cRItfCPraYVKy1wRpAVdWgZ4VW5KIjB8Yoo"
+        "Ref": "MeetupHandlerLambdaVersiondwnNtfftEeW72fpZu9PRqH9d5oE7RAwFJxSOX83sY"
       }
     }
   }

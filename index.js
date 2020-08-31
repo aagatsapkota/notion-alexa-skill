@@ -2,11 +2,16 @@
 
 const Alexa = require('ask-sdk-core')
 const fetch = require('node-fetch')
+const file = require('./TestIssues.json')
+require('dotenv').config()
 
-const { API_KEY } = process.env
-let cityName = 'Kathmandu'
-const SKILL_NAME = 'Check Weather'
-let WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
+// const { API_KEY } = process.env
+// const { GIT_API_KEY } = process.env
+const { GIT_API_KEY } = process.env
+const user = 'aagatsapkota'
+const repo = 'sls-meetup-alexa-skill'
+let issueName = ''
+const SKILL_NAME = 'Create Issue'
 
 // Handlers
 const LaunchRequestHandler = {
@@ -14,7 +19,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
   },
   handle(handlerInput) {
-    const speechText = `Welcome to ${SKILL_NAME}. Where are you from?`
+    const speechText = `Welcome to ${SKILL_NAME}. What is the name of your issue?`
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
@@ -29,12 +34,19 @@ const MeetupIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'MeetupIntent'
   },
   async handle(handlerInput) {
-    cityName = handlerInput.requestEnvelope.request.intent.slots.City.value
-    WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
-    const response = await fetch(WEATHER_API_URL)
-    const data = await response.json()
-    const temp = data.main.temp - 273
-    const speechText = `Hi, person from ${cityName}, the temperature here is ${temp} celsius`
+    issueName = handlerInput.requestEnvelope.request.intent.slots.Name.value
+    const speechText = `Hi have created your issue called ${issueName}`
+    // process.env.TOKEN
+
+    fetch(`https://api.github.com/repos/${user}/${repo}/issues`, {
+      method: 'post',
+      body: JSON.stringify(file),
+      headers: { 'Content-Type': 'application/json', Authorization: `token ${GIT_API_KEY}` }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(`Issue created at ${json.url}`)
+      })
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -87,7 +99,6 @@ const SessionEndedRequestHandler = {
     return request.type === 'SessionEndedRequest'
   },
   handle(handlerInput) {
-    // any cleanup logic goes here
     return handlerInput.responseBuilder.getResponse()
   }
 }

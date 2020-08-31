@@ -132,14 +132,14 @@ custom:
           en-US:
             interactionModel:
               languageModel:
-                invocationName: check weather
+                invocationName: create issue
                 intents:
                   - name: MeetupIntent
                     slots:
-                    - name: City
-                      type: AMAZON.City
+                    - name: Name
+                      type: AMAZON.SearchQuery
                     samples:
-                     - 'I am from {City}'
+                     - 'name {Name}'
                   - name: AMAZON.HelpIntent
                     samples: []
                   - name: AMAZON.CancelIntent
