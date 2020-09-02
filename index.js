@@ -9,16 +9,12 @@ const user = 'aagatsapkota'
 const repo = 'sls-meetup-alexa-skill'
 const SKILL_NAME = 'Create Issue'
 
-// create project, and tell what project and status the issue is on
-// second call create a project card, it accepts issue ID, pass status and create project entry
-
-// Handlers
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
   },
   handle(handlerInput) {
-    const speechText = `Welcome to ${SKILL_NAME}. What is the name of your issue?`
+    const speechText = `Welcome to ${SKILL_NAME}. Name?`
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
@@ -26,9 +22,6 @@ const LaunchRequestHandler = {
       .getResponse()
   }
 }
-
-// const createIssue takes a tile and returns an issue
-// take the fetch function in here
 
 const createIssue = async (issueName) => {
   const issueResponse = await fetch(`https://api.github.com/repos/${user}/${repo}/issues`, {
@@ -40,29 +33,35 @@ const createIssue = async (issueName) => {
   })
   return issueResponse.json()
 }
-const getProject = async () => {
-  const projectName = await fetch(`https://api.github.com/repos/${user}/${repo}/projects`, {
-    method: 'get',
-    headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
-  })
-  return projectName.json()
-}
-const getColumn = async () => {
-  const project = await getProject()
-  const projectId = project[0].id
-  const column = await fetch(`https://api.github.com/projects/${projectId}/columns`, {
-    method: 'get',
-    headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
-  })
-  return column.json()
-}
-// issueID  690637232
+
+// The functions below can be used for future expansion, to search through different projects
+// or through different columns. They work.
+
+// const getProject = async () => {
+//   const projectName = await fetch(`https://api.github.com/repos/${user}/${repo}/projects`, {
+//     method: 'get',
+//     headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
+//   })
+//   return projectName.json()
+// }
+// const getColumn = async () => {
+//   const project = await getProject()
+//   const projectId = project[0].id
+//   const column = await fetch(`https://api.github.com/projects/${projectId}/columns`, {
+//     method: 'get',
+//     headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
+//   })
+//   return column.json()
+// }
+
+// exampleIssueID  690637232
 // projectID 5381051
 // columnID 10656169
+
 const addProjectCard = async (issue) => {
-  const column = await getColumn()
-  const columnId = column[0].id
-  const createCard = await fetch(`https://api.github.com/projects/columns/${columnId}/cards`, {
+  // const column = await getColumn()
+  // const columnId = column[0].id
+  const createCard = await fetch('https://api.github.com/projects/columns/10656169/cards', {
     method: 'post',
     body: JSON.stringify({
       note: issue.title
@@ -81,7 +80,7 @@ const MeetupIntentHandler = {
   async handle(handlerInput) {
     const issueName = handlerInput.requestEnvelope.request.intent.slots.Name.value
     const issue = await createIssue(issueName)
-    const projectCard = await addProjectCard(issue)
+    await addProjectCard(issue)
     const speechText = `Created issue ID ${issue.number} with title ${issue.title} `
 
     return handlerInput.responseBuilder
@@ -100,7 +99,7 @@ const HelpIntentHandler = {
             && request.intent.name === 'AMAZON.HelpIntent'
   },
   handle(handlerInput) {
-    const speechText = 'Say hi something'
+    const speechText = 'Say create issue and the name of the issue with the word name'
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)

@@ -25,7 +25,7 @@ custom:
            publishingInformation:
             locales:
               en-US:
-                name: Weather
+                name: Project Card
         models:
           en-US:
             interactionModel:

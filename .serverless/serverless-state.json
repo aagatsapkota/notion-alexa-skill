@@ -10,7 +10,7 @@
       "name": "aws",
       "runtime": "nodejs12.x",
       "environment": {
-        "GIT_API_KEY": "7b41b3b21d462f7a5a753ac5a92f9527f64c2f1c"
+        "API_KEY": "1349eb61b2c25f276b0cb8e3c573965c17d268bc"
       },
       "region": "us-east-1",
       "versionFunctions": true,
@@ -162,7 +162,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sls-meetup-alexa-skill/dev/1599020072380-2020-09-02T04:14:32.380Z/sls-meetup-alexa-skill.zip"
+                "S3Key": "serverless/sls-meetup-alexa-skill/dev/1599057389974-2020-09-02T14:36:29.974Z/sls-meetup-alexa-skill.zip"
               },
               "FunctionName": "sls-meetup-alexa-skill-dev-meetupHandler",
               "Handler": "index.meetupHandler",
@@ -177,7 +177,7 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "GIT_API_KEY": "7b41b3b21d462f7a5a753ac5a92f9527f64c2f1c"
+                  "API_KEY": "1349eb61b2c25f276b0cb8e3c573965c17d268bc"
                 }
               }
             },
@@ -185,14 +185,14 @@
               "MeetupHandlerLogGroup"
             ]
           },
-          "MeetupHandlerLambdaVersionzkqx8OygYmoX4Ead0c6cdTFYwpTz4xurb8yA3fd1vCg": {
+          "MeetupHandlerLambdaVersionNKBvqwnTVBAw4BHsw2gSQeTS2zyjBhDCKKfw5v2ZCU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MeetupHandlerLambdaFunction"
               },
-              "CodeSha256": "qOrORGivRBBoZdO7e1+r7OEOILOVyDp5nUlESxkrPa0="
+              "CodeSha256": "5FyrWSCo9eFMUNy8yRT5DmlLRPOF36dUJ+lmWLNakGg="
             }
           },
           "MeetupHandlerLambdaPermissionAlexaSkill1": {
@@ -219,7 +219,7 @@
           "MeetupHandlerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MeetupHandlerLambdaVersionzkqx8OygYmoX4Ead0c6cdTFYwpTz4xurb8yA3fd1vCg"
+              "Ref": "MeetupHandlerLambdaVersionNKBvqwnTVBAw4BHsw2gSQeTS2zyjBhDCKKfw5v2ZCU"
             }
           }
         }
@@ -309,7 +309,7 @@
               "publishingInformation": {
                 "locales": {
                   "en-US": {
-                    "name": "Weather"
+                    "name": "Project Card"
                   }
                 }
               }
@@ -372,7 +372,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "MeetupHandlerLambdaVersionzkqx8OygYmoX4Ead0c6cdTFYwpTz4xurb8yA3fd1vCg"
+        "versionLogicalId": "MeetupHandlerLambdaVersionNKBvqwnTVBAw4BHsw2gSQeTS2zyjBhDCKKfw5v2ZCU"
       }
     },
     "configValidationMode": "warn",
@@ -399,7 +399,7 @@
           ".alexa-skills-token.json"
         ],
         "artifact": "/Users/aagatsapkota/notion-alexa-skill/.serverless/sls-meetup-alexa-skill.zip",
-        "artifactDirectoryName": "serverless/sls-meetup-alexa-skill/dev/1599020072380-2020-09-02T04:14:32.380Z"
+        "artifactDirectoryName": "serverless/sls-meetup-alexa-skill/dev/1599057389974-2020-09-02T14:36:29.974Z"
       },
       "layers": {
         "$ref": "$[\"service\"][\"layers\"]"
@@ -410,7 +410,7 @@
     "artifact": "/Users/aagatsapkota/notion-alexa-skill/.serverless/sls-meetup-alexa-skill.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/sls-meetup-alexa-skill/dev/1599020072380-2020-09-02T04:14:32.380Z",
+    "artifactDirectoryName": "serverless/sls-meetup-alexa-skill/dev/1599057389974-2020-09-02T14:36:29.974Z",
     "artifact": "sls-meetup-alexa-skill.zip"
   }
 }
