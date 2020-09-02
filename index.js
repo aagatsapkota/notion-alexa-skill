@@ -4,7 +4,7 @@ const Alexa = require('ask-sdk-core')
 const fetch = require('node-fetch')
 require('dotenv').config()
 
-const { GIT_API_KEY } = process.env
+const { API_KEY } = process.env
 const user = 'aagatsapkota'
 const repo = 'sls-meetup-alexa-skill'
 const SKILL_NAME = 'Create Issue'
@@ -36,14 +36,14 @@ const createIssue = async (issueName) => {
     body: JSON.stringify({
       title: issueName
     }),
-    headers: { 'Content-Type': 'application/json', Authorization: `token ${GIT_API_KEY}` }
+    headers: { 'Content-Type': 'application/json', Authorization: `token ${API_KEY}` }
   })
   return issueResponse.json()
 }
 const getProject = async () => {
   const projectName = await fetch(`https://api.github.com/repos/${user}/${repo}/projects`, {
     method: 'get',
-    headers: { Authorization: `token ${GIT_API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
+    headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
   })
   return projectName.json()
 }
@@ -52,7 +52,7 @@ const getColumn = async () => {
   const projectId = project[0].id
   const column = await fetch(`https://api.github.com/projects/${projectId}/columns`, {
     method: 'get',
-    headers: { Authorization: `token ${GIT_API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
+    headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
   })
   return column.json()
 }
@@ -67,7 +67,7 @@ const addProjectCard = async (issue) => {
     body: JSON.stringify({
       note: issue.title
     }),
-    headers: { Authorization: `token ${GIT_API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
+    headers: { Authorization: `token ${API_KEY}`, Accept: 'application/vnd.github.inertia-preview+json' }
   })
 
   return createCard.json()

@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   environment:
-    API_KEY: ${env:GIT_API_KEY}
+    API_KEY: ${env:API_KEY}
 
 plugins:
   - serverless-alexa-skills
